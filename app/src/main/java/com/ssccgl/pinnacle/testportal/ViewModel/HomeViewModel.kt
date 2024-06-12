@@ -19,18 +19,18 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.value = HomeUiState(
                 items = listOf(
-                    HomeItem(R.drawable.img, "Test Portal"),
-                    HomeItem(R.drawable.img, "Product"),
-                    HomeItem(R.drawable.img, "Blog"),
-                    HomeItem(R.drawable.img, "My Courses"),
-                    HomeItem(R.drawable.img, "Attempted Tests"),
-                    HomeItem(R.drawable.img, "Tracking"),
-                    HomeItem(R.drawable.img, "eBooks"),
-                    HomeItem(R.drawable.img, "Books"),
-                    HomeItem(R.drawable.img, "Saved"),
-                    HomeItem(R.drawable.img, "Offline EBooks"),
-                    HomeItem(R.drawable.img, "QR Scanner"),
-                    HomeItem(R.drawable.img, "Typing Software"),
+                    HomeItem(R.drawable.ic_testportal, "Test Portal"),
+                    HomeItem(R.drawable.ic_product, "Product"),
+                    HomeItem(R.drawable.ic_blog, "Blog"),
+                    HomeItem(R.drawable.ic_course, "My Courses"),
+                    HomeItem(R.drawable.ic_testportal, "Attempted Tests"),
+                    HomeItem(R.drawable.ic_testportal, "Tracking"),
+                    HomeItem(R.drawable.ic_testportal, "eBooks"),
+                    HomeItem(R.drawable.ic_testportal, "Books"),
+                    HomeItem(R.drawable.ic_testportal, "Saved"),
+                    HomeItem(R.drawable.ic_testportal, "Offline EBooks"),
+                    HomeItem(R.drawable.ic_testportal, "QR Scanner"),
+                    HomeItem(R.drawable.ic_testportal, "Typing Software"),
 //                    HomeItem(R.drawable.ic_offline_videos, "Offline Videos")
                 )
             )
