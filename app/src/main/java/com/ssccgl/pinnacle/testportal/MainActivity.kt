@@ -13,7 +13,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -65,7 +64,7 @@ fun TopAppBarWithDrawerButton(scaffoldState: ScaffoldState) {
                     scaffoldState.drawerState.open()
                 }
             }) {
-                Icon(painterResource(id = R.drawable.img), contentDescription = "Menu")
+                Icon(painterResource(id = R.drawable.ic_appdrawer_icon), contentDescription = "Menu")
             }
         }
     )
@@ -89,25 +88,31 @@ fun AppDrawer() {
 fun BottomNavigationBar(navController: NavHostController) {
     BottomNavigation {
         BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.img), contentDescription = "Home") },
+            icon = { Icon(painterResource(id = R.drawable.ic_home), contentDescription = "Home") },
             label = { Text("Home") },
             selected = true,
             onClick = { navController.navigate("home") }
         )
         BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.img), contentDescription = "Test Portal") },
+            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "Test Portal") },
             label = { Text("Test Portal") },
             selected = false,
             onClick = { navController.navigate("test_portal") }
         )
         BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.img), contentDescription = "Product") },
+            icon = { Icon(painterResource(id = R.drawable.ic_home), contentDescription = "Home") },
+            label = { Text("Home") },
+            selected = true,
+            onClick = { navController.navigate("home") }
+        )
+        BottomNavigationItem(
+            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "Product") },
             label = { Text("Product") },
             selected = false,
             onClick = { navController.navigate("product") }
         )
         BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.img), contentDescription = "My Courses") },
+            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "My Courses") },
             label = { Text("My Courses") },
             selected = false,
             onClick = { navController.navigate("my_courses") }
@@ -167,7 +172,7 @@ fun HomeIconItem(icon: Int, text: String) {
             painter = painterResource(id = icon),
             contentDescription = text,
             modifier = Modifier
-                .size(48.dp)
+                .size(64.dp)
                 .padding(8.dp)
         )
         Text(text = text, fontSize = 12.sp, textAlign = TextAlign.Center)
