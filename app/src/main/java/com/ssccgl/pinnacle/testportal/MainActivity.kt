@@ -172,7 +172,7 @@ fun HomeIconItem(icon: Int, text: String) {
             painter = painterResource(id = icon),
             contentDescription = text,
             modifier = Modifier
-                .size(64.dp)
+                .size(72.dp)
                 .padding(8.dp)
         )
         Text(text = text, fontSize = 12.sp, textAlign = TextAlign.Center)
