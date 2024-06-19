@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,7 +41,7 @@ fun HomeScreenContent(items: List<HomeItem>) {
 @Composable
 fun HomeIconItem(icon: Int, text: String) {
     Column(
-        modifier = Modifier
+        modifier = Modifier.size(72.dp).background(Color(0xFF03DAC5), shape = CircleShape)
             .padding(8.dp)
             .clickable { }
           //  .background(Color.LightGray) // Add background color if needed
@@ -55,3 +56,5 @@ fun HomeIconItem(icon: Int, text: String) {
         Text(text = text, fontSize = 12.sp, textAlign = TextAlign.Center)
     }
 }
+
+

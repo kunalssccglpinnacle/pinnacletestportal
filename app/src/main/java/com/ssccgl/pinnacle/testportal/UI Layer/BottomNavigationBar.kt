@@ -1,96 +1,91 @@
-//package com.ssccgl.pinnacle.testportal.ui
-//
-//import androidx.compose.material.BottomNavigation
-//import androidx.compose.material.BottomNavigationItem
-//import androidx.compose.material.Icon
-//import androidx.compose.material.Text
-//import androidx.compose.runtime.Composable
-//import androidx.compose.ui.res.painterResource
-//import androidx.navigation.NavHostController
-//import com.ssccgl.pinnacle.testportal.R
-//
-//@Composable
-//fun BottomNavigationBar(navController: NavHostController) {
-//    BottomNavigation {
-//        BottomNavigationItem(
-//            icon = { Icon(painterResource(id = R.drawable.ic_home), contentDescription = "Home") },
-//            label = { Text("Home") },
-//            selected = true,
-//            onClick = { navController.navigate("home") }
-//        )
-//        BottomNavigationItem(
-//            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "Test Portal") },
-//            label = { Text("Test Portal") },
-//            selected = false,
-//            onClick = { navController.navigate("test_portal") }
-//        )
-//        BottomNavigationItem(
-//            icon = { Icon(painterResource(id = R.drawable.ic_home), contentDescription = "Home") },
-//            label = { Text("Home") },
-//            selected = true,
-//            onClick = { navController.navigate("home") }
-//        )
-//
-//        BottomNavigationItem(
-//            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "Product") },
-//            label = { Text("Product") },
-//            selected = false,
-//            onClick = { navController.navigate("product") }
-//        )
-//        BottomNavigationItem(
-//            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "My Courses") },
-//            label = { Text("My Courses") },
-//            selected = false,
-//            onClick = { navController.navigate("my_courses") }
-//        )
-//    }
-//}
-
 
 package com.ssccgl.pinnacle.testportal.ui
 
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.ssccgl.pinnacle.testportal.R
+
+val icons = listOf(
+    Icons.Default.Home to "Home",
+    Icons.Default.Assessment to "Test Portal",
+   // Icons.Default.Dashboard to "Dashboard",
+    Icons.Default.ShoppingCart to "Product",
+    Icons.Default.School to "My Courses"
+)
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-    BottomNavigation {
-        BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_home), contentDescription = "Home") },
-            label = { Text("Home") },
-            selected = navController.currentDestination?.route == "home",
-            onClick = { navController.navigate("home") }
-        )
-        BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "Test Portal") },
-            label = { Text("Test Portal") },
-            selected = navController.currentDestination?.route == "test_portal",
-            onClick = { navController.navigate("test_portal") }
-        )
-        // Placeholder for the FAB
-        BottomNavigationItem(
-            icon = { },
-            label = { },
-            selected = false,
-            onClick = { navController.navigate("home") }
-        )
-        BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "Product") },
-            label = { Text("Product") },
-            selected = navController.currentDestination?.route == "product",
-            onClick = { navController.navigate("product") }
-        )
-        BottomNavigationItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_testportal), contentDescription = "My Courses") },
-            label = { Text("My Courses") },
-            selected = navController.currentDestination?.route == "my_courses",
-            onClick = { navController.navigate("my_courses") }
-        )
+    Box {
+        BottomAppBar(
+            cutoutShape = MaterialTheme.shapes.small.copy(CornerSize(percent = 50)),
+            backgroundColor = MaterialTheme.colors.background,
+            contentColor = Color.Gray,
+            modifier = Modifier
+                .height(56.dp)
+                .fillMaxWidth()
+        ) {
+            icons.subList(0, 2).forEach { (icon, label) ->
+                BottomNavigationItem(
+                    icon = { Icon(imageVector = icon, contentDescription = label) },
+                    label = { Text(label) },
+                    selected = navController.currentDestination?.route == label.toLowerCase().replace(" ", "_"),
+                    onClick = {
+                        navController.navigate(label.toLowerCase().replace(" ", "_")) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
+                )
+            }
+            Spacer(Modifier.weight(1f, true))
+            icons.subList(2, 4).forEach { (icon, label) ->
+                BottomNavigationItem(
+                    icon = { Icon(imageVector = icon, contentDescription = label) },
+                    label = { Text(label) },
+                    selected = navController.currentDestination?.route == label.toLowerCase().replace(" ", "_"),
+                    onClick = {
+                        navController.navigate(label.toLowerCase().replace(" ", "_")) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
+                )
+            }
+        }
+
+        FloatingActionButton(
+            onClick = {
+                navController.navigate("dashboard") {
+                    popUpTo(navController.graph.startDestinationId) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = Color.White,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .offset(y = -28.dp) // Adjust this value as needed to fit the design
+        ) {
+            Icon(imageVector = Icons.Default.Dashboard, contentDescription = "Dashboard")
+        }
     }
 }
